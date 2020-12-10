@@ -20,7 +20,7 @@ public class ControleEstoqueApplicationTest {
 		
 		CategoriaProduto cereais = new CategoriaProduto();
 		cereais.setNome("Cereais");
-		cereais.setDescricao("Grupo de alimentos perecíveis composto por grãos e sementes");
+		cereais.setDescricao("Grãos e sementes");
 		
 		testEntityManager.persist(cereais);
 		testEntityManager.flush();
