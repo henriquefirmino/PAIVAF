@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Controle de Estoque</title>
+	<link rel="stylesheet" type="text/css" href= "/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-offset-1 col-md-10">
+			<h3 class="text-center">Tela de consulta de produtos</h3>
+			<hr />
+
+			<input type="button" value="Add Produto" onclick="window.location.href='/produtos/adicionarProduto'; return false;" class="btn btn-primary" /> <br /> <br />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">Relação dos Produtos</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped table-bordered">
+						<tr>
+							<th>Nome</th>
+							<th>Preço</th>
+							<th>Categoria</th>
+							<th>Fornecedor</th>
+							<th>Quantidade em Estoque</th>
+							<th>Ação</th>
+						</tr>
+						<tr th:each="produto : ${listaProdutos}">
+							<td th:text="${produto.nome}"></td>
+							<td th:text="${produto.preco}"></td>
+							<td th:text="${produto.categoria.nome}"></td>
+							<td th:text="${produto.fornecedor.nome}"></td>
+							<td th:text="${produto.estoque.quantidade}"></td>
+							<td> 
+								<div class="btn-group pull-right">
+									<a class="btn btn-sm btn-light" th:href="@{/produtos/detalhar/{id}(id=${produto.id})}" >Detalhar</a>
+									<a class="btn btn-sm btn-primary" th:href="@{/produtos/alterarProduto/{id}(id=${produto.id})}" >Editar</a>
+								   	<a class="delete btn btn-sm btn-danger" th:href="@{/produtos/deletarProduto/{id}(id=${produto.id})}">Excluir</a>
+								   	<a class="btn btn-sm btn-warning" th:href="@{/inventarios/editarEstoque/{id}(id=${produto.estoque.id})}">Estoque</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<button type="button" class="btn btn-primary" onclick="window.location.href='/produtos/listar'; return false;">Produtos</button>
+			<button type="button" class="btn btn-primary" onclick="window.location.href='/inventarios/listar'; return false;">Inventário</button>
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='/categorias/listar'; return false;">Categorias</button>
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='/fornecedores/listar'; return false;">Fornecedores</button>
+			<button type="button" class="btn btn-secondary" onclick="window.location.href='/clientes/listar'; return false;">Clientes</button>
+			<button type="button" class="btn btn-success" onclick="window.location.href='/vendas/listar'; return false;">Vendas</button>
+			<button type="button" class="btn btn-info" onclick="window.location.href='/admin/home'; return false;">Admin</button>
+		</div>
+
+	</div>
+	<div class="footer">
+		<script type="text/javascript" src="/js/jquery-1.11.1.min.js" /></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js" /></script>
+	</div>
+	
+</body>
+
+</html>
